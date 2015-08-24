@@ -1,0 +1,69 @@
+{
+  "name": "YoCal-React",
+  "version": "0.0.1",
+  "description": "",
+  "homepage": "",
+  "author": "kotokz",
+  "repository": {
+    "type": "",
+    "url": ""
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": ""
+  },
+  "scripts": {
+    "build": "npm run clean && webpack",
+    "clean": "rm -rf dist",
+    "dist": "npm run build -- --config webpack.config.production.js",
+    "lint": "eslint src",
+    "start": "npm run build && node server.js",
+    "dev": "DEV_TOOLS=1 npm start",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "babel-runtime": "^5.6.15",
+    "classnames": "^2.1.2",
+    "immutable": "^3.7.4",
+    "js-csp": "^0.4.1",
+    "parse-link-header": "^0.2.0",
+    "ramda": "^0.17.1",
+    "react": "^0.13.3",
+    "react-pure-render": "^1.0.2",
+    "react-redux": "^0.9.0",
+    "react-router": "^1.0.0-beta3",
+    "redux": "^1.0.0",
+    "reselect": "0.0.2",
+    "transducers.js": "^0.3.2",
+    "whatwg-fetch": "^0.9.0"
+  },
+  "devDependencies": {
+    "babel": "^5.6.14",
+    "babel-core": "^5.6.15",
+    "babel-eslint": "^3.1.19",
+    "babel-loader": "^5.2.2",
+    "bootstrap": "^3.3.5",
+    "css-loader": "^0.15.1",
+    "cssnext-loader": "^1.0.1",
+    "eslint": "^0.24.0",
+    "eslint-plugin-react": "^2.6.2",
+    "extract-text-webpack-plugin": "^0.8.2",
+    "file-loader": "^0.8.4",
+    "hjs-webpack": "^2.12.2",
+    "html-webpack-plugin": "^1.5.2",
+    "node-libs-browser": "^0.5.2",
+    "normalize.css": "^3.0.3",
+    "postcss-loader": "^0.5.1",
+    "react-bootstrap": "^0.23.1",
+    "react-hot-loader": "^1.2.7",
+    "redux-devtools": "1.0.0",
+    "redux-devtools-diff-monitor": "^0.1.8",
+    "redux-thunk": "^0.1.0",
+    "style-loader": "^0.12.3",
+    "stylus-loader": "^1.2.1",
+    "url-loader": "^0.5.6",
+    "webpack": "^1.10.0",
+    "webpack-dev-server": "^1.10.1",
+    "yeticss": "^7.0.3"
+  }
+}
