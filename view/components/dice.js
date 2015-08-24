@@ -12,14 +12,14 @@ import Die from './die'
 export default class Dice extends Component {
 
     render () {
-        const {
+        let {
             dice,
             rolls,
             heldDice,
             roll,
             hold
             } = this.props;
-        const heldCheck = R.contains(R.__, heldDice)
+        let heldCheck = R.contains(R.__, heldDice)
 
         return (
             <div className='dice'>

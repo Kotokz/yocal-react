@@ -1,19 +1,19 @@
 /**
  * Created by kotokz on 15/8/22.
  */
-import React, { Component } from 'react';
+import React, { Component,PropTypes } from 'react';
 import R from 'ramda'
 
 export default class Tally extends Component {
 
     render() {
-        const {
+        let {
             scoring,
             scoreMarkers,
             isNewTurn
         } = this.props;
 
-        var getNumberDisplay = function(scoring, isNewTurn, scoreMarkers, key) {
+        let getNumberDisplay = function(scoring, isNewTurn, scoreMarkers, key) {
             let numDisplay = null;
             if (scoring[key] === null) {
                 if (isNewTurn) {
@@ -28,7 +28,7 @@ export default class Tally extends Component {
         };
 
 
-        const getNumDisplay = R.curry(getNumberDisplay)(scoring, isNewTurn, scoreMarkers);
+        let getNumDisplay = R.curry(getNumberDisplay)(scoring, isNewTurn, scoreMarkers);
 
         return (
             <div>
@@ -89,7 +89,7 @@ export default class Tally extends Component {
 }
 
 Tally.propTypes = {
-    isNewTurn: React.PropTypes.bool,
-    scoreMarkers: React.PropTypes.object,
-    scoring: React.PropTypes.object
+    isNewTurn: PropTypes.bool.isRequired,
+    scoreMarkers: PropTypes.object.isRequired,
+    scoring: PropTypes.object.isRequired
 };

@@ -53,5 +53,9 @@ module.exports = {
   },
   stylus: {
     use: [yeticss()]
+  },
+  babel: {
+    "stage": 0,
+    "optional": [ "runtime" ]
   }
 };

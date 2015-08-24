@@ -6,7 +6,7 @@ import GameConstants from '../constants/gameConstants';
 import createReducer from '../util/createReducer';
 import R from 'ramda'
 
-const initialState = {
+let initialState = {
     score: 0,
     scoring: {
         ones: null,
@@ -40,8 +40,8 @@ function resetTurn() {
 }
 
 function scoreForNumber(state, key, num) {
-    const sameNum = R.filter(n => n === num)
-    const scoreFor = R.sum(sameNum(state.dice))
+    let sameNum = R.filter(n => n === num)
+    let scoreFor = R.sum(sameNum(state.dice))
     return finishScoringState(state, key, scoreFor)
 }
 
@@ -63,15 +63,15 @@ function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min)) + min
 }
 
-const countDiceByNumber = R.countBy(R.identity)
+let countDiceByNumber = R.countBy(R.identity)
 
 export default createReducer(initialState, {
     [GameConstants.ROLL_DICE](state, action) {
-        const diceRange = R.range(0, 5)
-        const getDice = R.map(i => R.contains(i, state.heldDice)
+        let diceRange = R.range(0, 5)
+        let getDice = R.map(i => R.contains(i, state.heldDice)
             ? state.dice[i]
             : getRandomInt(1, 6))
-        const rolls = state.rolls + 1
+        let rolls = state.rolls + 1
 
         return {
             ...state,
@@ -123,8 +123,8 @@ export default createReducer(initialState, {
     },
     [GameConstants.SCORE_THREE_OF_A_KIND](state, action) {
         // validate for 3 of a kind
-        const diceByNum3 = countDiceByNumber(state.dice)
-        const threeOrMore = R.head(R.filter(k => diceByNum3[k] >= 3, Object.keys(diceByNum3)))
+        let diceByNum3 = countDiceByNumber(state.dice)
+        let threeOrMore = R.head(R.filter(k => diceByNum3[k] >= 3, Object.keys(diceByNum3)))
         if (!threeOrMore) {
             console.log('cannot score')
             return state
@@ -134,8 +134,8 @@ export default createReducer(initialState, {
     },
     [GameConstants.SCORE_FOUR_OF_A_KIND](state, action) {
         // validate for four of a kind
-        const diceByNum4 = countDiceByNumber(state.dice)
-        const fourOrMore = R.head(R.filter(k => diceByNum4[k] >= 4, Object.keys(diceByNum4)))
+        let diceByNum4 = countDiceByNumber(state.dice)
+        let fourOrMore = R.head(R.filter(k => diceByNum4[k] >= 4, Object.keys(diceByNum4)))
         if (!fourOrMore) {
             console.log('cannot score')
             return state
@@ -146,7 +146,7 @@ export default createReducer(initialState, {
     },
     [GameConstants.SCORE_FULL_HOUSE](state, action) {
         // validate full House
-        const fhDice = R.values(countDiceByNumber(state.dice))
+        let fhDice = R.values(countDiceByNumber(state.dice))
         if ((fhDice[0] === 2 && fhDice[1] === 3) ||
             (fhDice[0] === 3 && fhDice[1] === 2)) {
             // Full House scores 25
@@ -158,15 +158,15 @@ export default createReducer(initialState, {
     },
     [GameConstants.SCORE_SMALL_RUN](state, action) {
         // validate small run
-        const sortedCopy = state.dice.slice().sort((a, b) => a - b)
-        const sdice = R.uniq(sortedCopy)
-        const slices = R.aperture(4, sdice)
-        const possibleRuns = [
+        let sortedCopy = state.dice.slice().sort((a, b) => a - b)
+        let sdice = R.uniq(sortedCopy)
+        let slices = R.aperture(4, sdice)
+        let possibleRuns = [
             [1, 2, 3, 4],
             [2, 3, 4, 5],
             [3, 4, 5, 6]
         ]
-        const isRun = R.contains(R.__, possibleRuns)
+        let isRun = R.contains(R.__, possibleRuns)
         if (R.any(isRun)(slices)) {
             // small run scores 30
             return finishScoringState(state, 'small_run', 30)
@@ -177,14 +177,14 @@ export default createReducer(initialState, {
     },
     [GameConstants.SCORE_LARGE_RUN](state, action) {
         // validate large run
-        const sortedCopy = state.dice.slice().sort((a, b) => a - b)
-        const sdice = R.uniq(sortedCopy)
-        const slices = R.aperture(5, sdice)
-        const possibleRuns = [
+        let sortedCopy = state.dice.slice().sort((a, b) => a - b)
+        let sdice = R.uniq(sortedCopy)
+        let slices = R.aperture(5, sdice)
+        let possibleRuns = [
             [1, 2, 3, 4, 5],
             [2, 3, 4, 5, 6]
         ]
-        const isRun = R.contains(R.__, possibleRuns)
+        let isRun = R.contains(R.__, possibleRuns)
         if (R.any(isRun)(slices)) {
             // small run scores 40
             return finishScoringState(state, 'large_run', 40)
@@ -194,7 +194,7 @@ export default createReducer(initialState, {
         }
     },
     [GameConstants.SCORE_REDUXEE](state, action) {
-        const aDie = state.dice[0]
+        let aDie = state.dice[0]
         if (R.all(dice => dice === aDie, state.dice)) {
             // reduxee scores 50
             return finishScoringState(state, 'reduxee', 50)

@@ -9,7 +9,7 @@ export default class LoginFormComponent {
     handleFormSubmit = (e) => {
         e.preventDefault();
 
-        const { loginSubmitted } = this.props;
+        let { loginSubmitted } = this.props;
 
         loginSubmitted({
             username: this.refs.username.value,

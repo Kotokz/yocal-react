@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect';
 
-const helloSelector = state => state.helloWorld;
+let helloSelector = state => state.helloWorld;
 
 export const upperHelloSelector = createSelector(
   helloSelector,

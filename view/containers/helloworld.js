@@ -19,7 +19,7 @@ import BS from 'react-bootstrap';
 export default class HelloWorld extends React.Component {
 
     onChangeName() {
-        const { props: { changeName, helloWorld } } = this;
+        let { props: { changeName, helloWorld } } = this;
         changeName(helloWorld.get('name'));
     }
 

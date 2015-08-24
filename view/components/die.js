@@ -78,6 +78,6 @@ export default class Die extends Component {
 }
 
 Die.propTypes = {
-    onClick: React.PropTypes.func,
-    number: React.PropTypes.number
+    onClick: PropTypes.func.isRequired,
+    number: PropTypes.number.isRequired
 };
