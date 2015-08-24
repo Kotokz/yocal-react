@@ -46,6 +46,6 @@ Dice.propTypes = {
     dice: PropTypes.array.isRequired,
     rolls: PropTypes.number.isRequired,
     heldDice: PropTypes.array.isRequired,
-    hold: PropTypes.func.required,
-    roll: PropTypes.func.required,
+    hold: PropTypes.func.isRequired,
+    roll: PropTypes.func.isRequired,
 }

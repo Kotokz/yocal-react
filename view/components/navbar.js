@@ -25,7 +25,7 @@ class NavBar extends Component {
 
     render() {
         return (
-            <BS.Navbar inverse fluid fixedTop brand="YoCal" toggleNavKey={0}>
+            <BS.Navbar inverse fluid brand="YoCal" toggleNavKey={0}>
                 <BS.CollapsibleNav eventKey={0}>
                     <BS.Nav navbar>
                         <RouteLink to="/hello">Hello World</RouteLink>

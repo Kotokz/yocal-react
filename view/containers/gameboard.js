@@ -13,20 +13,21 @@ import BS from 'react-bootstrap';
 export default class GameBoard extends Component{
 
     render () {
-        const {
+        let {
             dispatch,
             scoring,
             isNewTurn,
             dice,
             score,
             rolls,
-            heldDice
+            heldDice,
             } = this.props;
-        const {
+        let actions = bindActionCreators(actionCreators, dispatch);
+        let {
             roll,
             reset,
             hold
-            } = bindActionCreators(actionCreators, dispatch);
+            } =  actions;
 
         return (
             <BS.Panel header='Dice game'>
@@ -35,14 +36,14 @@ export default class GameBoard extends Component{
                         <div className='Grid' id='main'>
                         <div className='Grid-cell play-column'>
                             {dice.length
-                                ? <Dice {...{hold,roll}} {...{dice,rolls,heldDice}} />
+                                ? <Dice {...{dice,rolls,heldDice,hold,roll}}/>
                                 : <div className='dice'> <BS.Button bsStyle='primary' onClick={roll}>{!score ? 'Start Game' : 'Roll next turn'}</BS.Button></div>
                             }
                         </div>
                         <BS.Col className='Grid-cell Grid--1of3'>
                             <div className='dice'><BS.Button bsStyle='primary' onClick={reset}>Start Over</BS.Button></div>
                             <div id='score'>Score: {score}</div>
-                            <Tally scoreMarkers={bindActionCreators(actionCreators, dispatch)} {...{scoring, isNewTurn}}/>
+                            <Tally scoreMarkers={actions} {...{scoring, isNewTurn}}/>
                         </BS.Col>
                         </div>
                     </BS.Row>
@@ -53,12 +54,12 @@ export default class GameBoard extends Component{
 }
 
 GameBoard.propTypes = {
-    number: React.PropTypes.number,
-    dice: React.PropTypes.array,
-    rolls: React.PropTypes.number,
-    score: React.PropTypes.number,
-    scoring: React.PropTypes.object,
-    dispatch: React.PropTypes.func,
-    isNewTurn: React.PropTypes.bool,
-    heldDice: React.PropTypes.array
+    number: PropTypes.number,
+    dice: PropTypes.array,
+    rolls: PropTypes.number,
+    score: PropTypes.number,
+    scoring: PropTypes.object,
+    dispatch: PropTypes.func,
+    isNewTurn: PropTypes.bool,
+    heldDice: PropTypes.array,
 };

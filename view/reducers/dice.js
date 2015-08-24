@@ -67,7 +67,6 @@ const countDiceByNumber = R.countBy(R.identity)
 
 export default createReducer(initialState, {
     [GameConstants.ROLL_DICE](state, action) {
-        console.log("rolling")
         const diceRange = R.range(0, 5)
         const getDice = R.map(i => R.contains(i, state.heldDice)
             ? state.dice[i]
